@@ -26,8 +26,9 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent(int id)
         {
+      
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Controls.Add(this.label1);
-            this.Name = "UserControl1";
+            this.Name = "UserControl"+id.ToString();
             this.Size = new System.Drawing.Size(130, 75);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,4 +1,7 @@
-﻿namespace Calender
+﻿using System.Text;
+using System.Windows.Forms;
+
+namespace Calender
 {
     partial class Form1
     {
@@ -38,25 +41,28 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.MonthLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // prevButton
             // 
-            this.prevButton.Location = new System.Drawing.Point(344, 75);
+            this.prevButton.Location = new System.Drawing.Point(296, 31);
             this.prevButton.Name = "prevButton";
             this.prevButton.Size = new System.Drawing.Size(122, 23);
             this.prevButton.TabIndex = 0;
             this.prevButton.Text = "Previous Month";
             this.prevButton.UseVisualStyleBackColor = true;
+            this.prevButton.Click += new System.EventHandler(this.prevButton_Click);
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(628, 75);
+            this.nextButton.Location = new System.Drawing.Point(698, 31);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(122, 23);
             this.nextButton.TabIndex = 1;
             this.nextButton.Text = "Next Month";
             this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
             // dayContainer
             // 
@@ -73,7 +79,6 @@
             this.label1.Size = new System.Drawing.Size(46, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Sunday";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -129,11 +134,23 @@
             this.label7.TabIndex = 9;
             this.label7.Text = "Saturday";
             // 
+            // MonthLabel
+            // 
+            this.MonthLabel.AutoSize = true;
+            this.MonthLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MonthLabel.Location = new System.Drawing.Point(506, 68);
+            this.MonthLabel.Name = "MonthLabel";
+            this.MonthLabel.Size = new System.Drawing.Size(103, 25);
+            this.MonthLabel.TabIndex = 10;
+            this.MonthLabel.Text = "September";
+            this.MonthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 658);
+            this.Controls.Add(this.MonthLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
@@ -152,10 +169,13 @@
         }
 
         #endregion
-        public void setupCalender()
+        public void setupCalender(int date_offset)
         {
             DateTime today2 = DateTime.Now;
-            DateTime today = new DateTime(today2.Year, 1, 1);
+            today2 = today2.AddMonths(date_offset);
+            MonthLabel.Text = MonthArray[today2.Month - 1] + " " + today2.Year;
+
+            DateTime today = new DateTime(today2.Year, today2.Month, 1);
 
             DateTime startOfMonth = new DateTime(today.Year, today.Month, 1);
 
@@ -174,25 +194,30 @@
             int dayOfMonth = Convert.ToInt32(startOfMonth.DayOfWeek);
             int i = dayOfMonth;
             int total = dayOfMonth;
+            int total_val = 0;
             while (i > 0)
             {
-                UserControl1 control = new UserControl1();
+                UserControl1 control = new UserControl1(total_val);
                 control.BackColor = Color.White;
                 control.label1.Text = (prevMonth - i + 1).ToString();
-
+                this.userControlReferences[total_val] = control;
                 this.dayContainer.Controls.Add(control);
                 i--;
+                total_val++;
+
+
             }
             total += i;
             i = 0;
 
             while (i < days)
             {
-                UserControl1 control = new UserControl1();
+                UserControl1 control = new UserControl1(total_val);
                 control.label1.Text = (i + 1).ToString();
-
+                this.userControlReferences[total_val] = control;
                 this.dayContainer.Controls.Add(control);
                 i++;
+                total_val++;
             }
             total += i;
             i = 0;
@@ -200,16 +225,75 @@
 
             while (i < final)
             {
-                UserControl1 control = new UserControl1();
+                UserControl1 control = new UserControl1(total_val);
                 control.BackColor = Color.White;
                 control.label1.Text = (i + 1).ToString();
-
+                this.userControlReferences[total_val] = control;
                 this.dayContainer.Controls.Add(control);
                 i++;
+                total_val++;
             }
 
 
+        }
+        public void updateCalender(int date_offset)
+        {
+            DateTime today2 = DateTime.Now;
+            today2 = today2.AddMonths(date_offset);
+            MonthLabel.Text = MonthArray[today2.Month - 1] + " " + today2.Year;
 
+            DateTime today = new DateTime(today2.Year, today2.Month, 1);
+
+            DateTime startOfMonth = new DateTime(today.Year, today.Month, 1);
+
+            int days = DateTime.DaysInMonth(today.Year, today.Month);
+
+            int prevMonth = today.Month;
+            if (prevMonth != 1)
+            {
+                prevMonth = DateTime.DaysInMonth(today.Year, today.Month - 1);
+            }
+            else
+            {
+                prevMonth = DateTime.DaysInMonth(today.Year, 12);
+            }
+
+            int dayOfMonth = Convert.ToInt32(startOfMonth.DayOfWeek);
+            int i = dayOfMonth;
+            int total = dayOfMonth;
+            int total_val = 0;
+            while (i > 0)
+            {
+                this.userControlReferences[total_val].BackColor = Color.White;
+                this.userControlReferences[total_val].label1.Text = (prevMonth - i + 1).ToString();
+
+                
+                i--;
+                total_val++;
+
+
+            }
+            total += i;
+            i = 0;
+
+            while (i < days)
+            {
+                this.userControlReferences[total_val].BackColor = System.Drawing.SystemColors.ActiveCaption;
+                this.userControlReferences[total_val].label1.Text = (i + 1).ToString();
+                i++;
+                total_val++;
+            }
+            total += i;
+            i = 0;
+            int final = 7 * 6 - total;
+
+            while (i < final)
+            {
+                this.userControlReferences[total_val].BackColor = Color.White;
+                this.userControlReferences[total_val].label1.Text = (i + 1).ToString();
+                i++;
+                total_val++;
+            }
         }
         private Button prevButton;
         private Button nextButton;
@@ -221,5 +305,90 @@
         private Label label5;
         private Label label6;
         private Label label7;
+        private Label MonthLabel;
+        private int CurrentMonth;
+        private String[] MonthArray =
+        {
+            "January", 
+            "February", 
+            "March", 
+            "April", 
+            "May", 
+            "June", 
+            "July", 
+            "August", 
+            "September", 
+            "October", 
+            "November", 
+            "December"
+        };
+        private UserControl1[] userControlReferences = new UserControl1[42];
     }
 }
+//DateTime today2 = DateTime.Now;
+////today2 = today2.AddMonths(date_offset);
+//CurrentMonth = date_offset;
+//MonthLabel.Text = MonthArray[today2.Month - 1] + " " + today2.Year;
+
+//DateTime today = new DateTime(today2.Year, today2.Month, 1);
+
+//DateTime startOfMonth = new DateTime(today.Year, today.Month, 1);
+
+//int days = DateTime.DaysInMonth(today.Year, today.Month);
+
+//int prevMonth = today.Month;
+//if (prevMonth != 1)
+//{
+//    prevMonth = DateTime.DaysInMonth(today.Year, today.Month - 1);
+//}
+//else
+//{
+//    prevMonth = DateTime.DaysInMonth(today.Year, 12);
+//}
+
+//int dayOfMonth = Convert.ToInt32(startOfMonth.DayOfWeek);
+//int i = dayOfMonth;
+//int total = dayOfMonth;
+
+//int total_count = 0;
+//while (i > 0)
+//{
+//    UserControl1 control = new UserControl1(total_count);
+//    control.BackColor = Color.White;
+//    control.label1.Text = (prevMonth - i + 1).ToString();
+
+//    //userControlReferences[total_count] = control;
+
+//    this.dayContainer.Controls.Add(control);
+//    i--;
+//    total_count++;
+//}
+//total += i;
+//i = 0;
+
+//while (i < days)
+//{
+//    UserControl1 control = new UserControl1(total_count);
+//    control.label1.Text = (i + 1).ToString();
+//    //userControlReferences[total_count] = control;
+
+//    this.dayContainer.Controls.Add(control);
+//    i++;
+//    total_count++;
+//}
+//total += i;
+//i = 0;
+//int final = 7 * 6 - total;
+
+//while (i < final)
+//{
+//    UserControl1 control = new UserControl1(total_count);
+//    control.BackColor = Color.White;
+//    control.label1.Text = (i + 1).ToString();
+//   // userControlReferences[total_count] = control;
+
+//    this.Controls.Add(control);
+
+//    i++;
+//    total_count++;
+//}

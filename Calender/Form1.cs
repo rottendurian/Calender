@@ -5,12 +5,19 @@ namespace Calender
         public Form1()
         {
             InitializeComponent();
-            setupCalender();
+            setupCalender(-3);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void prevButton_Click(object sender, EventArgs e)
         {
+            CurrentMonth -= 1;
+            updateCalender(CurrentMonth);
+        }
 
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            CurrentMonth += 1;
+            updateCalender(CurrentMonth);
         }
     }
 

@@ -12,9 +12,9 @@ namespace Calender
 {
     public partial class UserControl1 : UserControl
     {
-        public UserControl1()
+        public UserControl1(int id)
         {
-            InitializeComponent();
+            InitializeComponent(id);
         }
 
         private void label1_Click(object sender, EventArgs e)
