@@ -19,6 +19,13 @@ namespace Calender
             CurrentMonth += 1;
             updateCalender(CurrentMonth);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            eventcreator ec = new eventcreator();
+            ec.Show();
+
+        }
     }
 
 
