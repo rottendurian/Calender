@@ -1,4 +1,6 @@
-﻿namespace Calender
+﻿using System.Windows.Forms;
+
+namespace Calender
 {
     partial class UserControl1
     {
@@ -26,7 +28,7 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent(int id)
+        private void InitializeComponent(int id, Form1 form, DateTime date)
         {
       
             this.label1 = new System.Windows.Forms.Label();
@@ -41,7 +43,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "30";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // UserControl1
             // 
@@ -56,8 +57,30 @@
 
         }
 
-        #endregion
+        public void InitializeComponentsManual(Form1 form, DateTime date)
+        {
+            this.BackColor = Color.White;
+            this.label1.Text = (date.Day).ToString();
+            this.formRef = form;
+            this.date = date;
+            this.Click += new EventHandler(this.UserControlClicked);
 
+            foreach (Control c in this.Controls)
+                c.Click += new EventHandler(this.UserControlClicked);
+        }
+
+        public void UpdateComponents(Form1 form, DateTime date)
+        {
+            this.BackColor = Color.White;
+            this.label1.Text = (date.Day).ToString();
+            this.date = date;
+        }
+
+        
+
+        #endregion
+        private Form1 formRef;
+        private DateTime date;
         public Label label1;
     }
 }

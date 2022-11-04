@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Calender
@@ -21,6 +22,60 @@ namespace Calender
                 components.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public void InitializeDictionary()
+        {
+            this.events = new Dictionary<int, List<Event>>();
+        }
+        public void setupCalender(int month_offset)
+        {
+            DateTime today = DateTime.Now;
+            today = today.AddMonths(month_offset);
+            today = new DateTime(today.Year, today.Month, 1);
+
+            MonthLabel.Text = MonthArray[today.Month - 1] + " " + today.Year;
+
+
+            int cur_month = today.Month;
+            int days_into_prev_month = Convert.ToInt32(today.DayOfWeek);
+
+            today = today.AddDays(-days_into_prev_month);
+            
+
+            int total_value = 0;
+            while (total_value < 42)
+            {
+                UserControl1 control = new UserControl1(0, this, today);
+                this.userControlReferences[total_value] = control;
+                this.dayContainer.Controls.Add(control);
+                today = today.AddDays(1);
+                total_value++;
+                
+            }
+        }
+        public void updateCalender(int month_offset)
+        {
+            DateTime today = DateTime.Now;
+            today = today.AddMonths(month_offset);
+            today = new DateTime(today.Year, today.Month, 1);
+
+            MonthLabel.Text = MonthArray[today.Month - 1] + " " + today.Year;
+
+
+            int cur_month = today.Month;
+            int days_into_prev_month = Convert.ToInt32(today.DayOfWeek);
+
+            today = today.AddDays(-days_into_prev_month);
+
+
+            int total_value = 0;
+            while (total_value < 42)
+            {
+                this.userControlReferences[total_value].UpdateComponents(this,today);
+                today = today.AddDays(1);
+                total_value++;
+
+            }
         }
 
         #region Windows Form Designer generated code
@@ -204,132 +259,6 @@ namespace Calender
         }
 
         #endregion
-        public void setupCalender(int date_offset)
-        {
-            DateTime today2 = DateTime.Now;
-            today2 = today2.AddMonths(date_offset);
-            MonthLabel.Text = MonthArray[today2.Month - 1] + " " + today2.Year;
-
-            DateTime today = new DateTime(today2.Year, today2.Month, 1);
-
-            DateTime startOfMonth = new DateTime(today.Year, today.Month, 1);
-
-            int days = DateTime.DaysInMonth(today.Year, today.Month);
-
-            int prevMonth = today.Month;
-            if (prevMonth != 1)
-            {
-                prevMonth = DateTime.DaysInMonth(today.Year, today.Month - 1);
-            }
-            else
-            {
-                prevMonth = DateTime.DaysInMonth(today.Year, 12);
-            }
-
-            int dayOfMonth = Convert.ToInt32(startOfMonth.DayOfWeek);
-            int i = dayOfMonth;
-            int total = dayOfMonth;
-            int total_val = 0;
-            while (i > 0)
-            {
-                UserControl1 control = new UserControl1(total_val);
-                control.BackColor = Color.White;
-                control.label1.Text = (prevMonth - i + 1).ToString();
-                this.userControlReferences[total_val] = control;
-                this.dayContainer.Controls.Add(control);
-                i--;
-                total_val++;
-
-
-            }
-            total += i;
-            i = 0;
-
-            while (i < days)
-            {
-                UserControl1 control = new UserControl1(total_val);
-                control.label1.Text = (i + 1).ToString();
-                this.userControlReferences[total_val] = control;
-                this.dayContainer.Controls.Add(control);
-                i++;
-                total_val++;
-            }
-            total += i;
-            i = 0;
-            int final = 7 * 6 - total;
-
-            while (i < final)
-            {
-                UserControl1 control = new UserControl1(total_val);
-                control.BackColor = Color.White;
-                control.label1.Text = (i + 1).ToString();
-                this.userControlReferences[total_val] = control;
-                this.dayContainer.Controls.Add(control);
-                i++;
-                total_val++;
-            }
-
-
-        }
-        public void updateCalender(int date_offset)
-        {
-            DateTime today2 = DateTime.Now;
-            today2 = today2.AddMonths(date_offset);
-            MonthLabel.Text = MonthArray[today2.Month - 1] + " " + today2.Year;
-
-            DateTime today = new DateTime(today2.Year, today2.Month, 1);
-
-            DateTime startOfMonth = new DateTime(today.Year, today.Month, 1);
-
-            int days = DateTime.DaysInMonth(today.Year, today.Month);
-
-            int prevMonth = today.Month;
-            if (prevMonth != 1)
-            {
-                prevMonth = DateTime.DaysInMonth(today.Year, today.Month - 1);
-            }
-            else
-            {
-                prevMonth = DateTime.DaysInMonth(today.Year, 12);
-            }
-
-            int dayOfMonth = Convert.ToInt32(startOfMonth.DayOfWeek);
-            int i = dayOfMonth;
-            int total = dayOfMonth;
-            int total_val = 0;
-            while (i > 0)
-            {
-                this.userControlReferences[total_val].BackColor = Color.White;
-                this.userControlReferences[total_val].label1.Text = (prevMonth - i + 1).ToString();
-
-                
-                i--;
-                total_val++;
-
-
-            }
-            total += i;
-            i = 0;
-
-            while (i < days)
-            {
-                this.userControlReferences[total_val].BackColor = System.Drawing.SystemColors.ActiveCaption;
-                this.userControlReferences[total_val].label1.Text = (i + 1).ToString();
-                i++;
-                total_val++;
-            }
-            total += i;
-            i = 0;
-            int final = 7 * 6 - total;
-
-            while (i < final)
-            {
-                this.userControlReferences[total_val].BackColor = Color.White;
-                this.userControlReferences[total_val].label1.Text = (i + 1).ToString();
-                i++;
-                total_val++;
-            }
-        }
         private Button prevButton;
         private Button nextButton;
         public FlowLayoutPanel dayContainer;
@@ -360,72 +289,6 @@ namespace Calender
         private UserControl1[] userControlReferences = new UserControl1[42];
         private Button button1;
         private Label testEventOpener;
+        public Dictionary<int,List<Event>> events;
     }
 }
-//DateTime today2 = DateTime.Now;
-////today2 = today2.AddMonths(date_offset);
-//CurrentMonth = date_offset;
-//MonthLabel.Text = MonthArray[today2.Month - 1] + " " + today2.Year;
-
-//DateTime today = new DateTime(today2.Year, today2.Month, 1);
-
-//DateTime startOfMonth = new DateTime(today.Year, today.Month, 1);
-
-//int days = DateTime.DaysInMonth(today.Year, today.Month);
-
-//int prevMonth = today.Month;
-//if (prevMonth != 1)
-//{
-//    prevMonth = DateTime.DaysInMonth(today.Year, today.Month - 1);
-//}
-//else
-//{
-//    prevMonth = DateTime.DaysInMonth(today.Year, 12);
-//}
-
-//int dayOfMonth = Convert.ToInt32(startOfMonth.DayOfWeek);
-//int i = dayOfMonth;
-//int total = dayOfMonth;
-
-//int total_count = 0;
-//while (i > 0)
-//{
-//    UserControl1 control = new UserControl1(total_count);
-//    control.BackColor = Color.White;
-//    control.label1.Text = (prevMonth - i + 1).ToString();
-
-//    //userControlReferences[total_count] = control;
-
-//    this.dayContainer.Controls.Add(control);
-//    i--;
-//    total_count++;
-//}
-//total += i;
-//i = 0;
-
-//while (i < days)
-//{
-//    UserControl1 control = new UserControl1(total_count);
-//    control.label1.Text = (i + 1).ToString();
-//    //userControlReferences[total_count] = control;
-
-//    this.dayContainer.Controls.Add(control);
-//    i++;
-//    total_count++;
-//}
-//total += i;
-//i = 0;
-//int final = 7 * 6 - total;
-
-//while (i < final)
-//{
-//    UserControl1 control = new UserControl1(total_count);
-//    control.BackColor = Color.White;
-//    control.label1.Text = (i + 1).ToString();
-//   // userControlReferences[total_count] = control;
-
-//    this.Controls.Add(control);
-
-//    i++;
-//    total_count++;
-//}
