@@ -38,26 +38,19 @@ namespace Calender
                 Int32.Parse(MinutesTextBox.Text), 
                 DescriptionTextBox.Text);
 
-            try
+            
+            if (!this.MainForm.events.ContainsKey(date_id))
             {
-                if (!this.MainForm.events.ContainsKey(date_id))
-                {
-                    List<Event> array = new List<Event>(1);
-                    array.Add(temp);
-                    this.MainForm.events.Add(date_id, array);
-
-                }
-                else
-                {
-                    this.MainForm.events[date_id].Add(temp);
-                }
-                UpdateEventListBox();
+                List<Event> array = new List<Event>(1);
+                array.Add(temp);
+                this.MainForm.events.Add(date_id, array);
 
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Invalid time format");
+                this.MainForm.events[date_id].Add(temp);
             }
+            UpdateEventListBox();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

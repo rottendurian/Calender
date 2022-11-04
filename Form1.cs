@@ -9,10 +9,6 @@ namespace Calender
         public Event(String name, int hour, int minute, String eventdetails)
         {
             Name = name;
-            if (hour > 23 || minute > 59 || hour < 0 || minute < 0)
-            {
-                throw new ArgumentException("Invalid hour/minutes");
-            }
             Hour = hour; 
             Minute = minute;
             EventDetails = eventdetails;

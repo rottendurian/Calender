@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rmw07\\source\\repos\\Calender-master\\Calender\\Calender.csproj",
+      "projectUniqueName": "C:\\Users\\rmw07\\source\\repos\\Calender-updated\\Calender\\Calender\\Calender.csproj",
       "projectName": "Calender",
-      "projectPath": "C:\\Users\\rmw07\\source\\repos\\Calender-master\\Calender\\Calender.csproj",
+      "projectPath": "C:\\Users\\rmw07\\source\\repos\\Calender-updated\\Calender\\Calender\\Calender.csproj",
       "packagesPath": "C:\\Users\\rmw07\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rmw07\\source\\repos\\Calender-master\\Calender\\obj\\",
+      "outputPath": "C:\\Users\\rmw07\\source\\repos\\Calender-updated\\Calender\\Calender\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rmw07\\AppData\\Roaming\\NuGet\\NuGet.Config",
