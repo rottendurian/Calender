@@ -230,7 +230,7 @@ namespace Calender
             this.testEventOpener.Name = "testEventOpener";
             this.testEventOpener.Size = new System.Drawing.Size(140, 25);
             this.testEventOpener.TabIndex = 12;
-            this.testEventOpener.Text = "Eventmenu";
+            this.testEventOpener.Text = "testeventopener";
             // 
             // Form1
             // 
