@@ -42,14 +42,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TimeLabel = new System.Windows.Forms.Label();
             this.DescriptionLabel = new System.Windows.Forms.Label();
+            this.infoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ContinueButton
             // 
-            this.ContinueButton.Location = new System.Drawing.Point(38, 304);
+            this.ContinueButton.Location = new System.Drawing.Point(38, 323);
             this.ContinueButton.Margin = new System.Windows.Forms.Padding(2);
             this.ContinueButton.Name = "ContinueButton";
-            this.ContinueButton.Size = new System.Drawing.Size(80, 24);
+            this.ContinueButton.Size = new System.Drawing.Size(100, 24);
             this.ContinueButton.TabIndex = 0;
             this.ContinueButton.Text = "Add";
             this.ContinueButton.UseVisualStyleBackColor = true;
@@ -57,36 +58,38 @@
             // 
             // EventNameTextBox
             // 
-            this.EventNameTextBox.Location = new System.Drawing.Point(37, 206);
+            this.EventNameTextBox.Location = new System.Drawing.Point(38, 224);
             this.EventNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.EventNameTextBox.Name = "EventNameTextBox";
-            this.EventNameTextBox.Size = new System.Drawing.Size(100, 23);
+            this.EventNameTextBox.Size = new System.Drawing.Size(109, 23);
             this.EventNameTextBox.TabIndex = 1;
             this.EventNameTextBox.TextChanged += new System.EventHandler(this.EventName_TextChanged);
             // 
             // EventLabel
             // 
             this.EventLabel.AutoSize = true;
-            this.EventLabel.Location = new System.Drawing.Point(127, 49);
+            this.EventLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.EventLabel.Location = new System.Drawing.Point(126, 58);
             this.EventLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.EventLabel.Name = "EventLabel";
-            this.EventLabel.Size = new System.Drawing.Size(41, 15);
+            this.EventLabel.Size = new System.Drawing.Size(44, 15);
             this.EventLabel.TabIndex = 3;
             this.EventLabel.Text = "Events";
             // 
             // Datelabel
             // 
             this.Datelabel.AutoSize = true;
-            this.Datelabel.Location = new System.Drawing.Point(132, 7);
+            this.Datelabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Datelabel.Location = new System.Drawing.Point(132, 16);
             this.Datelabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Datelabel.Name = "Datelabel";
-            this.Datelabel.Size = new System.Drawing.Size(31, 15);
+            this.Datelabel.Size = new System.Drawing.Size(34, 15);
             this.Datelabel.TabIndex = 4;
             this.Datelabel.Text = "Date";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(38, 24);
+            this.dateTimePicker1.Location = new System.Drawing.Point(37, 33);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(232, 23);
@@ -95,9 +98,9 @@
             // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(159, 304);
+            this.RemoveButton.Location = new System.Drawing.Point(170, 323);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(83, 23);
+            this.RemoveButton.Size = new System.Drawing.Size(100, 23);
             this.RemoveButton.TabIndex = 6;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
@@ -106,23 +109,24 @@
             // EventListBox
             // 
             this.EventListBox.FormattingEnabled = true;
+            this.EventListBox.HorizontalScrollbar = true;
             this.EventListBox.ItemHeight = 15;
-            this.EventListBox.Location = new System.Drawing.Point(38, 67);
+            this.EventListBox.Location = new System.Drawing.Point(37, 76);
             this.EventListBox.Name = "EventListBox";
-            this.EventListBox.Size = new System.Drawing.Size(232, 94);
+            this.EventListBox.Size = new System.Drawing.Size(232, 109);
             this.EventListBox.TabIndex = 7;
             // 
             // DescriptionTextBox
             // 
-            this.DescriptionTextBox.Location = new System.Drawing.Point(38, 256);
+            this.DescriptionTextBox.Location = new System.Drawing.Point(37, 276);
             this.DescriptionTextBox.Name = "DescriptionTextBox";
-            this.DescriptionTextBox.Size = new System.Drawing.Size(204, 23);
+            this.DescriptionTextBox.Size = new System.Drawing.Size(232, 23);
             this.DescriptionTextBox.TabIndex = 8;
             // 
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(67, 188);
+            this.NameLabel.Location = new System.Drawing.Point(69, 206);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(39, 15);
             this.NameLabel.TabIndex = 9;
@@ -131,7 +135,7 @@
             // 
             // HourTextBox
             // 
-            this.HourTextBox.Location = new System.Drawing.Point(159, 206);
+            this.HourTextBox.Location = new System.Drawing.Point(184, 224);
             this.HourTextBox.MaxLength = 2;
             this.HourTextBox.Name = "HourTextBox";
             this.HourTextBox.Size = new System.Drawing.Size(36, 23);
@@ -141,7 +145,7 @@
             // 
             // MinutesTextBox
             // 
-            this.MinutesTextBox.Location = new System.Drawing.Point(201, 206);
+            this.MinutesTextBox.Location = new System.Drawing.Point(226, 224);
             this.MinutesTextBox.MaxLength = 2;
             this.MinutesTextBox.Name = "MinutesTextBox";
             this.MinutesTextBox.Size = new System.Drawing.Size(41, 23);
@@ -152,7 +156,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(195, 209);
+            this.label1.Location = new System.Drawing.Point(220, 227);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(10, 15);
             this.label1.TabIndex = 12;
@@ -161,7 +165,7 @@
             // TimeLabel
             // 
             this.TimeLabel.AutoSize = true;
-            this.TimeLabel.Location = new System.Drawing.Point(180, 188);
+            this.TimeLabel.Location = new System.Drawing.Point(205, 206);
             this.TimeLabel.Name = "TimeLabel";
             this.TimeLabel.Size = new System.Drawing.Size(33, 15);
             this.TimeLabel.TabIndex = 13;
@@ -170,17 +174,29 @@
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(110, 238);
+            this.DescriptionLabel.Location = new System.Drawing.Point(121, 258);
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(67, 15);
             this.DescriptionLabel.TabIndex = 14;
             this.DescriptionLabel.Text = "Description";
             // 
+            // infoLabel
+            // 
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.infoLabel.Location = new System.Drawing.Point(103, 190);
+            this.infoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(109, 15);
+            this.infoLabel.TabIndex = 15;
+            this.infoLabel.Text = "Event Information";
+            // 
             // eventcreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 364);
+            this.ClientSize = new System.Drawing.Size(304, 369);
+            this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.label1);
@@ -205,11 +221,13 @@
 
         #endregion
 
-        
+
 
         private void InitializeComponentsManual()
         {
             this.dateTimePicker1.Value = dt;
+            this.HourTextBox.Text = dt.Hour.ToString();
+            this.MinutesTextBox.Text = dt.Minute.ToString();
         }
         private void UpdateEventListBox()
         {
@@ -248,5 +266,6 @@
         private Label label1;
         private Label TimeLabel;
         private Label DescriptionLabel;
+        private Label infoLabel;
     }
 }
