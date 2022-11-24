@@ -43,6 +43,7 @@ namespace Calender
             this.label7 = new System.Windows.Forms.Label();
             this.MonthLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // prevButton
@@ -157,11 +158,24 @@ namespace Calender
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 21;
+            this.listBox1.Location = new System.Drawing.Point(206, 12);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(693, 42);
+            this.listBox1.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 637);
+            this.ClientSize = new System.Drawing.Size(1110, 637);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.MonthLabel);
             this.Controls.Add(this.label7);
@@ -235,6 +249,9 @@ namespace Calender
                 total_value++;
 
             }
+
+            
+
         }
 
        
@@ -268,5 +285,6 @@ namespace Calender
         private UserControl1[] userControlReferences = new UserControl1[42];
         private Button button1;
         public Dictionary<int,List<Event>> events;
+        private ListBox listBox1;
     }
 }

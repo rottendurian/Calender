@@ -12,9 +12,9 @@ namespace Calender
 {
     public partial class UserControl1 : UserControl
     {
-        public UserControl1(int id,Form1 form,DateTime date)
+        public UserControl1(int id, Form1 form, DateTime date)
         {
-            InitializeComponent(id,form,date);
+            InitializeComponent();
             InitializeComponentsManual(form,date);
         }
 

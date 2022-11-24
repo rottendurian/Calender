@@ -33,45 +33,59 @@ namespace Calender
         {
             int hash = 23;
             hash = hash * 31 + time.Year;
-            hash = hash * 31 * time.Month;
+            hash = hash * 31 + time.Month;
             hash = hash * 31 + time.Day;
             return hash;
+        }
+        public void UpdateUserControlListBoxes()
+        {
+            listBox1.Items.Clear();
+            int hash = MonthDayHashFunction(DateTime.Today);
+            List<Event> eventList;
+            bool result = events.TryGetValue(hash, out eventList);
+            if (result)
+            {
+                foreach (Event e in eventList)
+                {
+                    listBox1.Items.Add(e.EventToString());
+                }
+            }
+
+            foreach (UserControl1 u in this.userControlReferences) 
+            {
+                u.UpdateTreeView();
+            }
         }
 
 
     }
-        public class Event
+    public class Event
+    {
+        public string Name;
+        public int Hour;
+        public int Minute;
+        public string EventDetails;
+        public Event(string name, int hour, int minute, string eventdetails)
         {
-            public String Name;
-            public int Hour;
-            public int Minute;
-            public String EventDetails;
-            public Event(String name, int hour, int minute, String eventdetails)
+            Name = name;
+            if (hour > 23 || minute > 59 || hour < 0 || minute < 0)
             {
-                Name = name;
-                if (hour > 23 || minute > 59 || hour < 0 || minute < 0)
-                {
-                    throw new ArgumentException("Invalid hour/minutes");
-                }
-                Hour = hour;
-                Minute = minute;
-                EventDetails = eventdetails;
+                throw new ArgumentException("Invalid hour/minutes");
             }
-            public String EventToString()
-            {
-                return Hour.ToString() + ":" + Minute.ToString() + " " + Name + " : " + EventDetails;
-            }
+            Hour = hour;
+            Minute = minute;
+            EventDetails = eventdetails;
+        }
+        public string EventToString()
+        {
+            return Hour.ToString() + ":" + Minute.ToString() + " " + Name + " : " + EventDetails;
         }
 
-
-
-
-
-
-
-
-
-
+        public string UserControlToString()
+        {
+            return Hour.ToString() + ":" + Minute.ToString() + " " + Name;
+        }
+    }
 
 
 

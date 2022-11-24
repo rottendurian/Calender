@@ -247,6 +247,8 @@
             {
 
             }
+
+            this.MainForm.UpdateUserControlListBoxes();
             
         }
 
@@ -269,3 +271,5 @@
         private Label infoLabel;
     }
 }
+
+
