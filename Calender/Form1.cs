@@ -80,6 +80,17 @@ namespace Calender
         {
             saveEvents("res/default.json");
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            int c = listBox1.Items.Count;
+            string s = "";
+            for (int i = 0; i < c; i++)
+            {
+                s =s+"\n"+ listBox1.Items[i].ToString();
+            }
+            label8.Text = s;
+        }
     }
     public class Event
     {
