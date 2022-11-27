@@ -43,7 +43,7 @@ namespace Calender
             this.label7 = new System.Windows.Forms.Label();
             this.MonthLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox1 = new Calender.MyListBox();
             this.SuspendLayout();
             // 
             // prevButton
@@ -165,9 +165,11 @@ namespace Calender
             this.listBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 21;
-            this.listBox1.Location = new System.Drawing.Point(206, 12);
+            this.listBox1.Location = new System.Drawing.Point(311, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(693, 42);
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listBox1.ShowScrollbar = false;
+            this.listBox1.Size = new System.Drawing.Size(486, 42);
             this.listBox1.TabIndex = 12;
             // 
             // Form1
@@ -190,6 +192,7 @@ namespace Calender
             this.Controls.Add(this.prevButton);
             this.Name = "Form1";
             this.Text = "Event Planner";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,6 +202,7 @@ namespace Calender
         public void InitializeDictionary()
         {
             this.events = new Dictionary<int, List<Event>>();
+            loadEvents();
         }
         public void setupCalender(int month_offset)
         {
@@ -225,10 +229,11 @@ namespace Calender
                 total_value++;
                 
             }
+            UpdateUserControlListBoxes();
         }//
         public void updateCalender(int month_offset)
         {
-            DateTime today = DateTime.Now;
+            DateTime today = DateTime.Today;
             today = today.AddMonths(month_offset);
             today = new DateTime(today.Year, today.Month, 1);
 
@@ -285,6 +290,36 @@ namespace Calender
         private UserControl1[] userControlReferences = new UserControl1[42];
         private Button button1;
         public Dictionary<int,List<Event>> events;
-        private ListBox listBox1;
+        private MyListBox listBox1;
     }
+
+    public class MyListBox : System.Windows.Forms.ListBox
+    {
+        private bool mShowScroll;
+        protected override System.Windows.Forms.CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                if (!mShowScroll)
+                    cp.Style = cp.Style & ~0x200000;
+                return cp;
+            }
+        }
+        public bool ShowScrollbar
+        {
+            get { return mShowScroll; }
+            set
+            {
+                if (value != mShowScroll)
+                {
+                    mShowScroll = value;
+                    if (IsHandleCreated)
+                        RecreateHandle();
+                }
+            }
+        }
+    }
+
+
 }

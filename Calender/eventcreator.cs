@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -84,20 +85,58 @@ namespace Calender
             int minute = Int32.Parse(MinutesTextBox.Text);
 
             int size = event_list.Count();
-            List<int> remove_list = new List<int>();
-            for (int i = 0; i < size; i++)
+            for (int i = size-1; i >= 0; i--)
             {
-                if (event_list[i].Name == name || (event_list[i].Hour == hour && event_list[i].Minute == minute)) {
-                    remove_list.Add(i);
-                } 
-            }
-            foreach (int i in remove_list)
-            {
-                event_list.RemoveAt(i);
+                if (event_list[i].Name == name)
+                { //|| (event_list[i].Hour == hour && event_list[i].Minute == minute) removed becuz bad
+                    event_list.RemoveAt(i);
+                }
             }
 
             UpdateEventListBox();
 
+        }
+
+        private void EventListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        struct CurrentEventStruct
+        {
+            public Event e {get; set;}
+            public int date_id {get; set;}
+            public CurrentEventStruct(Event e,int date_id)
+            {
+                this.e = e;
+                this.date_id = date_id;
+            }
+        }
+        private void ImportButton_Click(object sender, EventArgs e)
+        {
+            string json = Clipboard.GetText();
+
+            CurrentEventStruct importEvent = JsonSerializer.Deserialize<CurrentEventStruct>(json);
+
+            this.MainForm.events[importEvent.date_id].Add(importEvent.e);
+
+            UpdateEventListBox();
+        }
+
+        private void ExportButton_Click(object sender, EventArgs e)
+        {
+            int index = EventListBox.SelectedIndex;
+
+            DateTime date = dateTimePicker1.Value;
+            int date_id = this.MainForm.MonthDayHashFunction(date);
+
+            Event curEvent = this.MainForm.events[date_id][index];
+
+            CurrentEventStruct exportEvent = new CurrentEventStruct(curEvent, date_id);
+
+            string json = JsonSerializer.Serialize(exportEvent);
+
+            Clipboard.SetText(json);
         }
     }
 }

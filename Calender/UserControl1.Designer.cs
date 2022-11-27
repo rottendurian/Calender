@@ -31,7 +31,7 @@ namespace Calender
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox1 = new Calender.MyListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -52,6 +52,8 @@ namespace Calender
             this.listBox1.ItemHeight = 15;
             this.listBox1.Location = new System.Drawing.Point(4, 22);
             this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listBox1.ShowScrollbar = false;
             this.listBox1.Size = new System.Drawing.Size(120, 45);
             this.listBox1.TabIndex = 1;
             // 
@@ -59,7 +61,7 @@ namespace Calender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.Name = "UserControl1";
@@ -71,7 +73,16 @@ namespace Calender
         #endregion
         public void InitializeComponentsManual(Form1 form, DateTime date)
         {
-            this.BackColor = Color.White;
+            if (date.Day == DateTime.Today.Day)
+            {
+                this.BackColor = Color.LightSkyBlue;
+                this.listBox1.BackColor = Color.LightSkyBlue;
+            }
+            else
+            {
+                this.BackColor = Color.White;
+                this.listBox1.BackColor = Color.White;
+            }
             this.label1.Text = (date.Day).ToString();
             this.formRef = form;
             this.date = date;
@@ -87,7 +98,15 @@ namespace Calender
 
         public void UpdateComponents(Form1 form, DateTime date)
         {
-            this.BackColor = Color.White;
+            if (date.Day == DateTime.Today.Day && date.Month == DateTime.Today.Month && date.Year == DateTime.Today.Year)
+            {
+                this.BackColor = Color.LightSkyBlue;
+                this.listBox1.BackColor = Color.LightSkyBlue;
+            } else
+            {
+                this.BackColor = Color.White;
+                this.listBox1.BackColor = Color.White;
+            }
             this.label1.Text = (date.Day).ToString();
             this.date = date;
             UpdateTreeView();
@@ -132,6 +151,6 @@ namespace Calender
         private Form1 formRef;
         private DateTime date;
         public Label label1;
-        private ListBox listBox1;
+        private MyListBox listBox1;
     }
 }

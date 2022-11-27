@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace Calender
 {
    
@@ -9,6 +12,10 @@ namespace Calender
             InitializeDictionary();
             InitializeComponent();
             setupCalender(0);
+        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            saveEvents("res/default.json");
         }
 
         private void prevButton_Click(object sender, EventArgs e)
@@ -57,14 +64,29 @@ namespace Calender
             }
         }
 
+        public void saveEvents(string filename)
+        {
+            string json = JsonSerializer.Serialize(events);
+            System.IO.File.WriteAllText(filename, json);
+        }
 
+        public void loadEvents()
+        {
+            string json = System.IO.File.ReadAllText("res/default.json");
+            events = JsonSerializer.Deserialize<Dictionary<int, List<Event>>>(json);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            saveEvents("res/default.json");
+        }
     }
     public class Event
     {
-        public string Name;
-        public int Hour;
-        public int Minute;
-        public string EventDetails;
+        public string Name { get; set; }
+        public int Hour { get; set; }
+        public int Minute { get; set; }
+        public string EventDetails { get; set; }
         public Event(string name, int hour, int minute, string eventdetails)
         {
             Name = name;
@@ -85,6 +107,8 @@ namespace Calender
         {
             return Hour.ToString() + ":" + Minute.ToString() + " " + Name;
         }
+
+        
     }
 
 
