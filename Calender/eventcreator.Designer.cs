@@ -115,6 +115,7 @@
             this.EventListBox.ItemHeight = 15;
             this.EventListBox.Location = new System.Drawing.Point(36, 71);
             this.EventListBox.Name = "EventListBox";
+            this.EventListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.EventListBox.Size = new System.Drawing.Size(232, 109);
             this.EventListBox.TabIndex = 7;
             this.EventListBox.SelectedIndexChanged += new System.EventHandler(this.EventListBox_SelectedIndexChanged);

@@ -34,9 +34,9 @@ namespace Calender
             //Close();
             DateTime date = dateTimePicker1.Value;
             int date_id = this.MainForm.MonthDayHashFunction(date);
-            Event temp = new Event(EventNameTextBox.Text, 
-                Int32.Parse(HourTextBox.Text), 
-                Int32.Parse(MinutesTextBox.Text), 
+            Event temp = new Event(EventNameTextBox.Text,
+                Int32.Parse(HourTextBox.Text),
+                Int32.Parse(MinutesTextBox.Text),
                 DescriptionTextBox.Text);
 
             try
@@ -85,7 +85,7 @@ namespace Calender
             int minute = Int32.Parse(MinutesTextBox.Text);
 
             int size = event_list.Count();
-            for (int i = size-1; i >= 0; i--)
+            for (int i = size - 1; i >= 0; i--)
             {
                 if (event_list[i].Name == name)
                 { //|| (event_list[i].Hour == hour && event_list[i].Minute == minute) removed becuz bad
@@ -104,9 +104,9 @@ namespace Calender
 
         struct CurrentEventStruct
         {
-            public Event e {get; set;}
-            public int date_id {get; set;}
-            public CurrentEventStruct(Event e,int date_id)
+            public Event e { get; set; }
+            public int date_id { get; set; }
+            public CurrentEventStruct(Event e, int date_id)
             {
                 this.e = e;
                 this.date_id = date_id;
@@ -116,9 +116,12 @@ namespace Calender
         {
             string json = Clipboard.GetText();
 
-            CurrentEventStruct importEvent = JsonSerializer.Deserialize<CurrentEventStruct>(json);
+            List<CurrentEventStruct> importEvents = JsonSerializer.Deserialize<List<CurrentEventStruct>>(json);
 
-            this.MainForm.events[importEvent.date_id].Add(importEvent.e);
+            foreach (var importEvent in importEvents)
+            {
+                this.MainForm.events[importEvent.date_id].Add(importEvent.e);
+            }
 
             UpdateEventListBox();
         }
@@ -126,17 +129,27 @@ namespace Calender
         private void ExportButton_Click(object sender, EventArgs e)
         {
             int index = EventListBox.SelectedIndex;
+            var selected = EventListBox.SelectedIndices;
+
+            List<CurrentEventStruct> exportEvents = new List<CurrentEventStruct>();
 
             DateTime date = dateTimePicker1.Value;
-            int date_id = this.MainForm.MonthDayHashFunction(date);
 
-            Event curEvent = this.MainForm.events[date_id][index];
+            foreach (int selection in selected)
+            {
+                int date_id = this.MainForm.MonthDayHashFunction(date);
+                Event curEvent = this.MainForm.events[date_id][selection];
+                CurrentEventStruct exportEvent = new CurrentEventStruct(curEvent, date_id);
 
-            CurrentEventStruct exportEvent = new CurrentEventStruct(curEvent, date_id);
+                exportEvents.Add(exportEvent);
 
-            string json = JsonSerializer.Serialize(exportEvent);
+            }
+            string json = JsonSerializer.Serialize(exportEvents);
 
             Clipboard.SetText(json);
+
+                
+            
         }
     }
 }
