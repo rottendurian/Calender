@@ -53,7 +53,7 @@
             this.ContinueButton.Margin = new System.Windows.Forms.Padding(2);
             this.ContinueButton.Name = "ContinueButton";
             this.ContinueButton.Size = new System.Drawing.Size(113, 24);
-            this.ContinueButton.TabIndex = 0;
+            this.ContinueButton.TabIndex = 7;
             this.ContinueButton.Text = "Add";
             this.ContinueButton.UseVisualStyleBackColor = true;
             this.ContinueButton.Click += new System.EventHandler(this.NewButton_Click);
@@ -64,7 +64,7 @@
             this.EventNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.EventNameTextBox.Name = "EventNameTextBox";
             this.EventNameTextBox.Size = new System.Drawing.Size(109, 23);
-            this.EventNameTextBox.TabIndex = 1;
+            this.EventNameTextBox.TabIndex = 3;
             this.EventNameTextBox.TextChanged += new System.EventHandler(this.EventName_TextChanged);
             // 
             // EventLabel
@@ -95,7 +95,7 @@
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(232, 23);
-            this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.TabIndex = 1;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // RemoveButton
@@ -103,7 +103,7 @@
             this.RemoveButton.Location = new System.Drawing.Point(155, 305);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(114, 23);
-            this.RemoveButton.TabIndex = 6;
+            this.RemoveButton.TabIndex = 8;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
@@ -117,7 +117,7 @@
             this.EventListBox.Name = "EventListBox";
             this.EventListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.EventListBox.Size = new System.Drawing.Size(232, 109);
-            this.EventListBox.TabIndex = 7;
+            this.EventListBox.TabIndex = 2;
             this.EventListBox.SelectedIndexChanged += new System.EventHandler(this.EventListBox_SelectedIndexChanged);
             // 
             // DescriptionTextBox
@@ -125,7 +125,7 @@
             this.DescriptionTextBox.Location = new System.Drawing.Point(36, 271);
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.Size = new System.Drawing.Size(232, 23);
-            this.DescriptionTextBox.TabIndex = 8;
+            this.DescriptionTextBox.TabIndex = 6;
             // 
             // NameLabel
             // 
@@ -143,7 +143,7 @@
             this.HourTextBox.MaxLength = 2;
             this.HourTextBox.Name = "HourTextBox";
             this.HourTextBox.Size = new System.Drawing.Size(36, 23);
-            this.HourTextBox.TabIndex = 10;
+            this.HourTextBox.TabIndex = 4;
             this.HourTextBox.Text = "23";
             this.HourTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -153,7 +153,7 @@
             this.MinutesTextBox.MaxLength = 2;
             this.MinutesTextBox.Name = "MinutesTextBox";
             this.MinutesTextBox.Size = new System.Drawing.Size(41, 23);
-            this.MinutesTextBox.TabIndex = 11;
+            this.MinutesTextBox.TabIndex = 5;
             this.MinutesTextBox.Text = "22";
             this.MinutesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -200,7 +200,7 @@
             this.ExportButton.Location = new System.Drawing.Point(155, 336);
             this.ExportButton.Name = "ExportButton";
             this.ExportButton.Size = new System.Drawing.Size(111, 24);
-            this.ExportButton.TabIndex = 16;
+            this.ExportButton.TabIndex = 10;
             this.ExportButton.Text = "Export Event";
             this.ExportButton.UseVisualStyleBackColor = true;
             this.ExportButton.Click += new System.EventHandler(this.ExportButton_Click);
@@ -210,7 +210,7 @@
             this.ImportButton.Location = new System.Drawing.Point(36, 336);
             this.ImportButton.Name = "ImportButton";
             this.ImportButton.Size = new System.Drawing.Size(114, 24);
-            this.ImportButton.TabIndex = 17;
+            this.ImportButton.TabIndex = 9;
             this.ImportButton.Text = "Import Event";
             this.ImportButton.UseVisualStyleBackColor = true;
             this.ImportButton.Click += new System.EventHandler(this.ImportButton_Click);
