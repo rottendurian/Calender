@@ -51,6 +51,7 @@ namespace Calender
                 else
                 {
                     this.MainForm.events[date_id].Add(temp);
+                    this.MainForm.SortDictionary(date_id);
                 }
                 UpdateEventListBox();
 
@@ -74,24 +75,40 @@ namespace Calender
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
+            //DateTime date = dateTimePicker1.Value;
+            //int date_id = this.MainForm.MonthDayHashFunction(date);
+
+            //List<Event> event_list = this.MainForm.events[date_id];
+
+            //String name = EventNameTextBox.Text;
+
+            ////int hour = Int32.Parse(HourTextBox.Text);
+            ////int minute = Int32.Parse(MinutesTextBox.Text);
+
+            //int size = event_list.Count();
+            //for (int i = size - 1; i >= 0; i--)
+            //{
+            //    if (event_list[i].Name == name)
+            //    { //|| (event_list[i].Hour == hour && event_list[i].Minute == minute) removed becuz bad
+            //        event_list.RemoveAt(i);
+            //    }
+            //}
+
+
+            var selected = EventListBox.SelectedIndices;
             DateTime date = dateTimePicker1.Value;
             int date_id = this.MainForm.MonthDayHashFunction(date);
 
-            List<Event> event_list = this.MainForm.events[date_id];
-
-            String name = EventNameTextBox.Text;
-
-            int hour = Int32.Parse(HourTextBox.Text);
-            int minute = Int32.Parse(MinutesTextBox.Text);
-
-            int size = event_list.Count();
-            for (int i = size - 1; i >= 0; i--)
+            for (int i = selected.Count-1; i >= 0; i--)
             {
-                if (event_list[i].Name == name)
-                { //|| (event_list[i].Hour == hour && event_list[i].Minute == minute) removed becuz bad
-                    event_list.RemoveAt(i);
-                }
+                this.MainForm.events[date_id].RemoveAt(selected[i]);
             }
+
+            //foreach (int selection in selected)
+            //{
+            //    this.MainForm.events[date_id].RemoveAt(selection);
+
+            //}
 
             UpdateEventListBox();
 
@@ -128,11 +145,11 @@ namespace Calender
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            int index = EventListBox.SelectedIndex;
-            var selected = EventListBox.SelectedIndices;
+            //int index = EventListBox.SelectedIndex;
 
             List<CurrentEventStruct> exportEvents = new List<CurrentEventStruct>();
 
+            var selected = EventListBox.SelectedIndices;
             DateTime date = dateTimePicker1.Value;
 
             foreach (int selection in selected)

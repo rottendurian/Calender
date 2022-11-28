@@ -43,7 +43,7 @@ namespace Calender
             this.label7 = new System.Windows.Forms.Label();
             this.MonthLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new Calender.MyListBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // prevButton
@@ -152,32 +152,32 @@ namespace Calender
             this.button1.Location = new System.Drawing.Point(0, 1);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 31);
+            this.button1.Size = new System.Drawing.Size(60, 31);
             this.button1.TabIndex = 11;
-            this.button1.Text = "EventMenu";
+            this.button1.Text = "Events";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // listBox1
+            // label8
             // 
-            this.listBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 21;
-            this.listBox1.Location = new System.Drawing.Point(311, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBox1.ShowScrollbar = false;
-            this.listBox1.Size = new System.Drawing.Size(486, 42);
-            this.listBox1.TabIndex = 12;
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(68, 1);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.MinimumSize = new System.Drawing.Size(955, 50);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(955, 50);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "12:30 Sample Event: sample event idk";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 637);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.MonthLabel);
             this.Controls.Add(this.label7);
@@ -254,12 +254,22 @@ namespace Calender
                 total_value++;
 
             }
+        }
 
-            
+        public void SortDictionary(DateTime day)
+        {
+            int index = MonthDayHashFunction(day);
+
+            events[index].Sort((x,y) => x.SortEventFunction().CompareTo(y.SortEventFunction()));
 
         }
 
-       
+        public void SortDictionary(int index)
+        {
+            events[index].Sort((x, y) => x.SortEventFunction().CompareTo(y.SortEventFunction()));
+        }
+
+
         private Button prevButton;
         private Button nextButton;
         public FlowLayoutPanel dayContainer;
@@ -290,7 +300,7 @@ namespace Calender
         private UserControl1[] userControlReferences = new UserControl1[42];
         private Button button1;
         public Dictionary<int,List<Event>> events;
-        private MyListBox listBox1;
+        private Label label8;
     }
 
     public class MyListBox : System.Windows.Forms.ListBox

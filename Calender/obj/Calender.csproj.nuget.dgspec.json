@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rmw07\\source\\repos\\Calender-updated\\Calender\\Calender\\Calender.csproj": {}
+    "C:\\Users\\rmw07\\Downloads\\Calender-Mountanrange-patch-eventList\\Calender-Mountanrange-patch-eventList\\Calender\\Calender.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rmw07\\source\\repos\\Calender-updated\\Calender\\Calender\\Calender.csproj": {
+    "C:\\Users\\rmw07\\Downloads\\Calender-Mountanrange-patch-eventList\\Calender-Mountanrange-patch-eventList\\Calender\\Calender.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rmw07\\source\\repos\\Calender-updated\\Calender\\Calender\\Calender.csproj",
+        "projectUniqueName": "C:\\Users\\rmw07\\Downloads\\Calender-Mountanrange-patch-eventList\\Calender-Mountanrange-patch-eventList\\Calender\\Calender.csproj",
         "projectName": "Calender",
-        "projectPath": "C:\\Users\\rmw07\\source\\repos\\Calender-updated\\Calender\\Calender\\Calender.csproj",
+        "projectPath": "C:\\Users\\rmw07\\Downloads\\Calender-Mountanrange-patch-eventList\\Calender-Mountanrange-patch-eventList\\Calender\\Calender.csproj",
         "packagesPath": "C:\\Users\\rmw07\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rmw07\\source\\repos\\Calender-updated\\Calender\\Calender\\obj\\",
+        "outputPath": "C:\\Users\\rmw07\\Downloads\\Calender-Mountanrange-patch-eventList\\Calender-Mountanrange-patch-eventList\\Calender\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rmw07\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -46,15 +46,25 @@ namespace Calender
         }
         public void UpdateUserControlListBoxes()
         {
-            listBox1.Items.Clear();
+            //listBox1.Items.Clear();
+            label8.Text = "";
             int hash = MonthDayHashFunction(DateTime.Today);
             List<Event> eventList;
             bool result = events.TryGetValue(hash, out eventList);
+
+            int eventCount = 0;
+
             if (result)
             {
                 foreach (Event e in eventList)
                 {
-                    listBox1.Items.Add(e.EventToString());
+                    if (eventCount >= 3)
+                    {
+                        break;
+                    }
+                    label8.Text += e.EventToString() + "\n";
+                    eventCount++;
+                    //listBox1.Items.Add(e.EventToString());
                 }
             }
 
@@ -106,6 +116,12 @@ namespace Calender
         public string UserControlToString()
         {
             return Hour.ToString() + ":" + Minute.ToString() + " " + Name;
+        }
+
+        public int SortEventFunction()
+        {
+            int reslt = Hour * 10 + Minute;
+            return reslt;
         }
 
         
