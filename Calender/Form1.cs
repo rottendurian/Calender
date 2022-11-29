@@ -58,7 +58,7 @@ namespace Calender
             {
                 foreach (Event e in eventList)
                 {
-                    if (eventCount >= 3)
+                    if (eventCount >= 2)
                     {
                         break;
                     }

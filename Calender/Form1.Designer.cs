@@ -44,11 +44,12 @@ namespace Calender
             this.MonthLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.UpcomingEventLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // prevButton
             // 
-            this.prevButton.Location = new System.Drawing.Point(259, 72);
+            this.prevButton.Location = new System.Drawing.Point(259, 87);
             this.prevButton.Name = "prevButton";
             this.prevButton.Size = new System.Drawing.Size(122, 23);
             this.prevButton.TabIndex = 0;
@@ -58,7 +59,7 @@ namespace Calender
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(728, 72);
+            this.nextButton.Location = new System.Drawing.Point(728, 87);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(122, 23);
             this.nextButton.TabIndex = 1;
@@ -68,7 +69,7 @@ namespace Calender
             // 
             // dayContainer
             // 
-            this.dayContainer.Location = new System.Drawing.Point(68, 135);
+            this.dayContainer.Location = new System.Drawing.Point(68, 143);
             this.dayContainer.Name = "dayContainer";
             this.dayContainer.Size = new System.Drawing.Size(955, 500);
             this.dayContainer.TabIndex = 2;
@@ -76,7 +77,7 @@ namespace Calender
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(112, 117);
+            this.label1.Location = new System.Drawing.Point(112, 125);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 15);
             this.label1.TabIndex = 3;
@@ -85,7 +86,7 @@ namespace Calender
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(249, 117);
+            this.label2.Location = new System.Drawing.Point(249, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 15);
             this.label2.TabIndex = 4;
@@ -94,7 +95,7 @@ namespace Calender
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(792, 117);
+            this.label3.Location = new System.Drawing.Point(792, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 6;
@@ -103,7 +104,7 @@ namespace Calender
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(660, 117);
+            this.label4.Location = new System.Drawing.Point(660, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
             this.label4.TabIndex = 5;
@@ -112,7 +113,7 @@ namespace Calender
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(524, 117);
+            this.label5.Location = new System.Drawing.Point(524, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 15);
             this.label5.TabIndex = 8;
@@ -121,7 +122,7 @@ namespace Calender
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(387, 117);
+            this.label6.Location = new System.Drawing.Point(387, 125);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 15);
             this.label6.TabIndex = 7;
@@ -130,7 +131,7 @@ namespace Calender
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(932, 117);
+            this.label7.Location = new System.Drawing.Point(932, 125);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 15);
             this.label7.TabIndex = 9;
@@ -140,7 +141,7 @@ namespace Calender
             // 
             this.MonthLabel.AutoSize = true;
             this.MonthLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MonthLabel.Location = new System.Drawing.Point(483, 68);
+            this.MonthLabel.Location = new System.Drawing.Point(483, 83);
             this.MonthLabel.Name = "MonthLabel";
             this.MonthLabel.Size = new System.Drawing.Size(103, 25);
             this.MonthLabel.TabIndex = 10;
@@ -163,7 +164,7 @@ namespace Calender
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(68, 1);
+            this.label8.Location = new System.Drawing.Point(68, 24);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.MinimumSize = new System.Drawing.Size(955, 50);
             this.label8.Name = "label8";
@@ -172,11 +173,26 @@ namespace Calender
             this.label8.Text = "12:30 Sample Event: sample event idk";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // UpcomingEventLabel
+            // 
+            this.UpcomingEventLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.UpcomingEventLabel.AutoSize = true;
+            this.UpcomingEventLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UpcomingEventLabel.Location = new System.Drawing.Point(68, 1);
+            this.UpcomingEventLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.UpcomingEventLabel.MinimumSize = new System.Drawing.Size(955, 10);
+            this.UpcomingEventLabel.Name = "UpcomingEventLabel";
+            this.UpcomingEventLabel.Size = new System.Drawing.Size(955, 21);
+            this.UpcomingEventLabel.TabIndex = 16;
+            this.UpcomingEventLabel.Text = "Upcoming Events:";
+            this.UpcomingEventLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1110, 637);
+            this.ClientSize = new System.Drawing.Size(1110, 653);
+            this.Controls.Add(this.UpcomingEventLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.MonthLabel);
@@ -301,6 +317,7 @@ namespace Calender
         private Button button1;
         public Dictionary<int,List<Event>> events;
         private Label label8;
+        private Label UpcomingEventLabel;
     }
 
     public class MyListBox : System.Windows.Forms.ListBox
