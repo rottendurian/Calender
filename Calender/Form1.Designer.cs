@@ -49,7 +49,7 @@ namespace Calender
             // 
             // prevButton
             // 
-            this.prevButton.Location = new System.Drawing.Point(259, 87);
+            this.prevButton.Location = new System.Drawing.Point(247, 91);
             this.prevButton.Name = "prevButton";
             this.prevButton.Size = new System.Drawing.Size(122, 23);
             this.prevButton.TabIndex = 0;
@@ -59,7 +59,7 @@ namespace Calender
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(728, 87);
+            this.nextButton.Location = new System.Drawing.Point(720, 89);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(122, 23);
             this.nextButton.TabIndex = 1;
@@ -131,7 +131,7 @@ namespace Calender
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(932, 125);
+            this.label7.Location = new System.Drawing.Point(930, 125);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 15);
             this.label7.TabIndex = 9;
@@ -140,10 +140,12 @@ namespace Calender
             // MonthLabel
             // 
             this.MonthLabel.AutoSize = true;
+            this.MonthLabel.BackColor = System.Drawing.Color.Transparent;
             this.MonthLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MonthLabel.Location = new System.Drawing.Point(483, 83);
+            this.MonthLabel.Location = new System.Drawing.Point(68, 87);
+            this.MonthLabel.MinimumSize = new System.Drawing.Size(955, 0);
             this.MonthLabel.Name = "MonthLabel";
-            this.MonthLabel.Size = new System.Drawing.Size(103, 25);
+            this.MonthLabel.Size = new System.Drawing.Size(955, 25);
             this.MonthLabel.TabIndex = 10;
             this.MonthLabel.Text = "September";
             this.MonthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -192,6 +194,8 @@ namespace Calender
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 653);
+            this.Controls.Add(this.nextButton);
+            this.Controls.Add(this.prevButton);
             this.Controls.Add(this.UpcomingEventLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
@@ -204,8 +208,6 @@ namespace Calender
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dayContainer);
-            this.Controls.Add(this.nextButton);
-            this.Controls.Add(this.prevButton);
             this.Name = "Form1";
             this.Text = "Event Planner";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

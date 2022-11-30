@@ -1,9 +1,9 @@
+using System.Configuration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Calender
 {
-   
 
     public partial class Form1 : Form
     {
@@ -47,15 +47,19 @@ namespace Calender
         public void UpdateUserControlListBoxes()
         {
             //listBox1.Items.Clear();
+            DateTime date = DateTime.Today;
             label8.Text = "";
-            int hash = MonthDayHashFunction(DateTime.Today);
+            int hash = MonthDayHashFunction(date);
             List<Event> eventList;
             bool result = events.TryGetValue(hash, out eventList);
+
+            
 
             int eventCount = 0;
 
             if (result)
             {
+                StartPosition:
                 foreach (Event e in eventList)
                 {
                     if (eventCount >= 2)
@@ -64,7 +68,14 @@ namespace Calender
                     }
                     label8.Text += e.EventToString() + "\n";
                     eventCount++;
-                    //listBox1.Items.Add(e.EventToString());
+                }
+                if (eventList.Count <= eventCount)
+                {
+                    date = date.AddDays(1.0);
+                    hash = MonthDayHashFunction(date);
+                    result = events.TryGetValue(hash, out eventList);
+                    if (result)
+                        goto StartPosition;
                 }
             }
 
@@ -110,11 +121,13 @@ namespace Calender
         }
         public string EventToString()
         {
-            return Hour.ToString() + ":" + Minute.ToString() + " " + Name + " : " + EventDetails;
+            if (Minute < 10) return Hour.ToString() + ":" + 0+Minute.ToString("D").Length + " " + Name + " : " + EventDetails;
+            else return Hour.ToString() + ":" + Minute.ToString("D") + " " + Name + " : " + EventDetails;
         }
 
         public string UserControlToString()
         {
+            if (Minute < 10) return Hour.ToString() + ":" + 0 + Minute.ToString("D").Length + " " + Name;
             return Hour.ToString() + ":" + Minute.ToString() + " " + Name;
         }
 

@@ -34,13 +34,13 @@ namespace Calender
             //Close();
             DateTime date = dateTimePicker1.Value;
             int date_id = this.MainForm.MonthDayHashFunction(date);
-            Event temp = new Event(EventNameTextBox.Text,
-                Int32.Parse(HourTextBox.Text),
-                Int32.Parse(MinutesTextBox.Text),
-                DescriptionTextBox.Text);
 
             try
             {
+                Event temp = new Event(EventNameTextBox.Text,
+                    Int32.Parse(HourTextBox.Text),
+                    Int32.Parse(MinutesTextBox.Text),
+                    DescriptionTextBox.Text);
                 if (!this.MainForm.events.ContainsKey(date_id))
                 {
                     List<Event> array = new List<Event>(1);
@@ -105,15 +105,21 @@ namespace Calender
         private void ImportButton_Click(object sender, EventArgs e)
         {
             string json = Clipboard.GetText();
-
-            List<CurrentEventStruct> importEvents = JsonSerializer.Deserialize<List<CurrentEventStruct>>(json);
-
-            foreach (var importEvent in importEvents)
+            try
             {
-                this.MainForm.events[importEvent.date_id].Add(importEvent.e);
-            }
+                List<CurrentEventStruct> importEvents = JsonSerializer.Deserialize<List<CurrentEventStruct>>(json);
 
-            UpdateEventListBox();
+                foreach (var importEvent in importEvents)
+                {
+                    this.MainForm.events[importEvent.date_id].Add(importEvent.e);
+                }
+
+                UpdateEventListBox();
+            } catch
+            {
+                MessageBox.Show("Invalid import string");
+            }
+            
         }
 
         private void ExportButton_Click(object sender, EventArgs e)
